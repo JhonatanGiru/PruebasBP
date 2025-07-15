@@ -23,7 +23,7 @@
 
 - name: Crear información de snapshots
   ansible.builtin.set_fact:
-    obtain_snapshots_parsed: "{{ obtain_snapshots_parsed | deafult([]) +
+    obtain_snapshots_parsed: "{{ obtain_snapshots_parsed | default([]) +
       [[] | combine({'nombre': item['name'], 'id': item['id']})] }}"
   loop: "{{ obtain_snapshots_info['guest_snapshots']['snapshots'] }}"
   loop_control:
