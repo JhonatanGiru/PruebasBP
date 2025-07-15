@@ -28,8 +28,10 @@
   loop: "{{ obtain_snapshots_info['guest_snapshots']['snapshots'] }}"
   loop_control:
     label: "Información de snapshot {{ item['name'] }}"
+  delegate_to: localhost
 
 - name: Imprimiendo snapshots disponibles
   ansible.builtin.debug:
     var: obtain_snapshots_parsed
+  delegate_to: localhost
 ...
