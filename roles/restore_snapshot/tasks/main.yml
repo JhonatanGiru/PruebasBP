@@ -27,8 +27,8 @@
     hostname: '{{ lookup("env", "VMWARE_HOST") }}'
     username: '{{ lookup("env", "VMWARE_USER") }}'
     password: '{{ lookup("env", "VMWARE_PASSWORD") }}'
-    datacenter: "{{ restore_snapshot_vm_info.virtual_machines[0]['datacenter'] }}"
-    folder: "{{ restore_snapshot_vm_info.virtual_machines[0]['folder'] }}"
+    datacenter: "{{ restore_snapshot_vm_info['virtual_machines'][0]['datacenter'] }}"
+    folder: "{{ restore_snapshot_vm_info['virtual_machines'][0]['folder'] }}"
     name: "{{ nombre_server }}"
     snapshot_name: "{{ nombre_snapshot }}"
     validate_certs: false
