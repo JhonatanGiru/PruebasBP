@@ -16,7 +16,7 @@
     username: '{{ lookup("env", "VMWARE_USER") }}'
     password: '{{ lookup("env", "VMWARE_PASSWORD") }}'
     datacenter: "{{ registro_informacion_vmware.virtual_machines.0.datacenter }}"
-    vm_name: "{{ nombre_server }}"
+    name: "{{ nombre_server }}"
   delegate_to: localhost
   register: registro_informacion_snapshots
   changed_when: false
