@@ -6,7 +6,7 @@
     vm_name: "{{ nombre_server }}"
     validate_certs: false
   delegate_to: localhost
-  register: restore_snapshot_vm_info
+  register: obtain_snapshots_vm_info
   changed_when: false
 
 - name: Obtener información de snapshots
@@ -14,15 +14,17 @@
     hostname: '{{ lookup("env", "VMWARE_HOST") }}'
     username: '{{ lookup("env", "VMWARE_USER") }}'
     password: '{{ lookup("env", "VMWARE_PASSWORD") }}'
-    datacenter: "{{ restore_snapshot_vm_info['virtual_machines'][0]['datacenter'] }}"
+    datacenter: "{{ obtain_snapshots_vm_info['virtual_machines'][0]['datacenter'] }}"
     name: "{{ nombre_server }}"
-    folder: "{{ restore_snapshot_vm_info['virtual_machines'][0]['folder'] }}"
+    folder: "{{ obtain_snapshots_vm_info['virtual_machines'][0]['folder'] }}"
   delegate_to: localhost
-  register: registro_informacion_snapshots
+  register: obtain_snapshots_info
   changed_when: false
 
 - name: Imprimiendo snapshots disponibles
   ansible.builtin.debug:
-    msg: "Snapshot: {{ item['name'] }}. ID: {{ item['id'] }}"
-  loop: "{{ registro_informacion_snapshots['guest_snapshots']['snapshots'] }}"
+    msg: "Nombre: {{ item['name'] }}. ID: {{ item['id'] }}"
+  loop: "{{ obtain_snapshots_info['guest_snapshots']['snapshots'] }}"
+  loop_control:
+    label: "Información de snapshot {{ item['name'] }}"
 ...
