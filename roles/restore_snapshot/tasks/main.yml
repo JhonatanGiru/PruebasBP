@@ -10,18 +10,6 @@
   register: restore_snapshot_vm_info
   changed_when: false
 
-# - name: Obtener información de snapshots
-#   community.vmware.vmware_guest_snapshot_info:
-#     hostname: '{{ lookup("env", "VMWARE_HOST") }}'
-#     username: '{{ lookup("env", "VMWARE_USER") }}'
-#     password: '{{ lookup("env", "VMWARE_PASSWORD") }}'
-#     datacenter: "{{ restore_snapshot_vm_info.virtual_machines[0]['datacenter'] }}"
-#     name: "{{ nombre_server }}"
-#     folder: "{{ restore_snapshot_vm_info.virtual_machines[0]['folder'] }}"
-#   delegate_to: localhost
-#   register: registro_informacion_snapshots
-#   changed_when: false
-
 - name: Restaurar snapshot de maquina virtual en VMWare
   community.vmware.vmware_guest_snapshot:
     hostname: '{{ lookup("env", "VMWARE_HOST") }}'
@@ -35,5 +23,4 @@
     state: revert
   delegate_to: localhost
   register: restore_snapshot_vm_info
-  changed_when: false
 ...
