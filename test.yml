@@ -5,5 +5,5 @@
   roles:
     - role: create_snapshot
       vars:
-        nombre_server: "clarovm01234567"
+        nombre_server: "clarovm01"
 ...

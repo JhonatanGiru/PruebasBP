@@ -1,10 +1,11 @@
 ---
 - name: Restarurar snapshot de maquina virtual en VMWare
-  community.vmware.vmware_vm_info:
+  community.vmware.vmware_guest_snapshot:
     hostname: '{{ lookup("env", "VMWARE_HOST") }}'
     username: '{{ lookup("env", "VMWARE_USER") }}'
     password: '{{ lookup("env", "VMWARE_PASSWORD") }}'
     vm_name: TSECWVC001
+    snapshot_id: 
     validate_certs: false
   delegate_to: localhost
   register: registro_informacion_vmware
