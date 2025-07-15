@@ -26,7 +26,7 @@
     folder: "{{ registro_informacion_vmware.virtual_machines.0.folder }}"
     name: "{{ nombre_server }}"
     state: present
-    snapshot_name: "snapshot_jobID-{{ tower_job_id }}{{ ansible_date_time.date }}_{{ ansible_date_time.hour }}:{{ ansible_date_time.minute }}"
+    snapshot_name: "snapshot_jobID-{{ lookup('env', 'JOB_ID') | int }}_{{ ansible_date_time.date }}_{{ ansible_date_time.hour }}:{{ ansible_date_time.minute }}"
     validate_certs: false
   delegate_to: localhost
   register: registro_snapshot
