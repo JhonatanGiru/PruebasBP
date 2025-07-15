@@ -1,9 +1,9 @@
 ---
 - name: Obtener informacion de maquina virtual en VMWare
   community.vmware.vmware_vm_info:
-    hostname: '{{ lookup("env", "VMWARE_HOST") }}'
-    username: '{{ lookup("env", "VMWARE_USER") }}'
-    password: '{{ lookup("env", "VMWARE_PASSWORD") }}'
+    hostname: '{{ lookup("ansible.builtin.env", "VMWARE_HOST") }}'
+    username: '{{ lookup("ansible.builtin.env", "VMWARE_USER") }}'
+    password: '{{ lookup("ansible.builtin.env", "VMWARE_PASSWORD") }}'
     vm_name: "{{ nombre_server }}"
     validate_certs: false
   delegate_to: localhost
@@ -19,14 +19,14 @@
 
 - name: Generar snapshot de maquina virtual en VMWare
   community.vmware.vmware_guest_snapshot:
-    hostname: '{{ lookup("env", "VMWARE_HOST") }}'
-    username: '{{ lookup("env", "VMWARE_USER") }}'
-    password: '{{ lookup("env", "VMWARE_PASSWORD") }}'
+    hostname: '{{ lookup("ansible.builtin.env", "VMWARE_HOST") }}'
+    username: '{{ lookup("ansible.builtin.env", "VMWARE_USER") }}'
+    password: '{{ lookup("ansible.builtin.env", "VMWARE_PASSWORD") }}'
     datacenter: "{{ registro_informacion_vmware.virtual_machines.0.datacenter }}"
     folder: "{{ registro_informacion_vmware.virtual_machines.0.folder }}"
     name: "{{ nombre_server }}"
     state: present
-    snapshot_name: "snapshot_jobID-{{ lookup('env', 'JOB_ID') | int }}_{{ ansible_date_time.date }}_{{ ansible_date_time.hour }}:{{ ansible_date_time.minute }}"
+    snapshot_name: "snapshot_jobID-{{ lookup('ansible.builtin.env', 'JOB_ID') | int }}_{{ ansible_date_time.date }}"
     validate_certs: false
   delegate_to: localhost
   register: registro_snapshot
