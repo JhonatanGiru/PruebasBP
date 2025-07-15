@@ -1,0 +1,9 @@
+---
+- name: Playbook de prueba para VMWare
+  hosts: localhost
+
+  roles:
+    - role: create_snapshot
+      vars:
+        nombre_server: "clarovm01"
+...
