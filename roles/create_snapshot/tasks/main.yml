@@ -10,13 +10,6 @@
   register: registro_informacion_vmware
   changed_when: false
 
-# - name: Validar que la máquina virtual existe
-#   ansible.builtin.assert:
-#     that:
-#       -
-#     fail_msg: "La máquina virtual {{ nombre_server }} no existe en VMware."
-#     quiet: true
-
 - name: Generar snapshot de maquina virtual en VMWare
   community.vmware.vmware_guest_snapshot:
     hostname: '{{ lookup("ansible.builtin.env", "VMWARE_HOST") }}'
@@ -28,7 +21,7 @@
     state: present
     snapshot_name: "snapshot_jobID-{{ lookup('ansible.builtin.env', 'JOB_ID') | int }}_{{ ansible_date_time.date }}"
     validate_certs: false
+    quiesce: "{{ create_snapshot_quiesce }}"
   delegate_to: localhost
   register: registro_snapshot
-  ignore_errors: true
 ...

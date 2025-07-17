@@ -21,6 +21,7 @@
     snapshot_name: "{{ nombre_snapshot }}"
     validate_certs: false
     state: revert
+    quiesce: "{{ restore_snapshot_quiesce }}"
   delegate_to: localhost
   register: restore_snapshot_vm_info
 ...

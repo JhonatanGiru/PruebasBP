@@ -1,0 +1,21 @@
+namespace: pichincha
+name: wintel
+version: 1.0.7
+readme: README.md
+authors:
+  - SRE <sre@pichincha.com>
+  - Red Hat
+description: 'Esta colleción se encarga de
+  la automatización de tareas, roles y modulos
+  correspondientes a la plataforma Windows.'
+license:
+  - GPL-2.0-or-later
+tags:
+  - wintel
+  - windows
+dependencies:
+  community.windows: '>=2.1.0'
+  ansible.windows: '>=2.7.0'
+  community.general: '>=9.2.0'
+  community.vmware: '>=5.7.0'
+repository: https://BancoPichinchaEC@dev.azure.com/BancoPichinchaEC/BP-Ansible-Plataformas/_git/pichincha.wintel

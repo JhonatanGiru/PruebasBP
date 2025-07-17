@@ -1,0 +1,11 @@
+---
+galaxy_info:
+  author: Jhonatan Hurtado <jhurtado@redhat.com>
+  description: 'Role para crear un snapshot de una máquina virtual en VMware.'
+  company: wintel
+  license: GPL-2.0-or-later
+  min_ansible_version: 2.17.0
+  platforms:
+    - name: vCenter
+      versions: ['5.5', '6.0', '6.5', '6.7']
+...
