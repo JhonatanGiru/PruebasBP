@@ -15,11 +15,11 @@
     hostname: '{{ lookup("ansible.builtin.env", "VMWARE_HOST") }}'
     username: '{{ lookup("ansible.builtin.env", "VMWARE_USER") }}'
     password: '{{ lookup("ansible.builtin.env", "VMWARE_PASSWORD") }}'
-    datacenter: "{{ registro_informacion_vmware.virtual_machines.0.datacenter }}"
-    folder: "{{ registro_informacion_vmware.virtual_machines.0.folder }}"
+    datacenter: "{{ registro_informacion_vmware['virtual_machines'][0]['datacenter'] }}"
+    folder: "{{ registro_informacion_vmware['virtual_machines'][0]['folder'] }}"
     name: "{{ nombre_server }}"
     state: present
-    snapshot_name: "snapshot_jobID-{{ lookup('ansible.builtin.env', 'JOB_ID') | int }}_{{ ansible_date_time.date }}"
+    snapshot_name: "snapshot_jobID-{{ lookup('ansible.builtin.env', 'JOB_ID') | int }}_{{ ansible_date_time['date'] }}"
     validate_certs: false
     quiesce: "{{ create_snapshot_quiesce }}"
   delegate_to: localhost
